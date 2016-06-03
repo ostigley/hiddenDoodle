@@ -1,10 +1,13 @@
 import React from 'react'
-import { render } from 'react-dom'
-// import App from '../components/app'
+import ReactDOM from 'react-dom'
 import PageContainer from '../components/page-container.js'
 
-render(
-  <PageContainer/>,
-  document.querySelector('body'))
-console.log('welcome to hiddenDoodle')
+const render= () => {
+	ReactDOM.render(
+		<PageContainer/>,
+		document.querySelector('body')
+	)
 
+}
+
+render()

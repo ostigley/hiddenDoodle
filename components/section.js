@@ -13,7 +13,7 @@ module.exports = React.createClass({
         <p>Section {this.props.id}</p>
         <Canvas />
         <Cover id={"cover "+ this.props.id}/>
-        <Button id={"button-"+ this.props.id} onClick="button()" />
+        <Button id={"button-"+ this.props.id} onClick={"button(" + this.props.id +")"} />
       </section>
     )
   }
