@@ -1,26 +1,22 @@
 import React, { Component } from 'react'
 
-module.exports = React.createClass({
-		  getInitialState () {
-		    return {data: []};
-		  },
-
-		  buttonClick () {
-		  	console.log(this.props.id, "clicked")
-		  },
-
-	  	setState () {
-	  		console.log(this, "button pushed")
-	  	}, 
+// module.exports = React.createClass({
 	  	
-  render() {
-    return (
+//   render() {
+//     return (
+//     	<div>
+// 	      <button id={this.props.id} onClick={this.props.onClick} > {this.props.id} </button>
+//       </div>
+//     )
+//   }
+
+// })
+
+module.exports = ({id, onClick}) => (
     	<div>
-	      <button id={this.props.id} onClick={this.buttonClick} > {this.props.id} </button>
-
-
+	      <button id={id} onClick={onClick}> {id} </button>
       </div>
-    )
-  }
 
-})
+	)
+
+
