@@ -5,7 +5,12 @@ module.exports = React.createClass({
   render() {
 
     return (
-      <canvas></canvas>
+      <div>
+      	<input id={ 'input-' + this.props.id } type='text' />
+      	<p id={ 'output-' + this.props.id } >
+      	{this.props.paragraph}
+      	</p>
+      </div>
     )
   }
 
