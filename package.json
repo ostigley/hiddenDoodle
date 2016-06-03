@@ -4,12 +4,8 @@
   "description": "doodle",
   "main": "index.js",
   "scripts": {
-    "start": "budo public/. -d --serve public/bundle.js --live",
-    "build": "browserify . -o bundle.js -g uglifyify",
-    "test": "browserify test.js | node | tap-spec",
-    "dist": "mkdir -p dist && bash -c 'cp *.{js,html,css} dist'",
-    "push": "gh-pages -d dist",
-    "deploy": "npm run build && npm run dist && npm run push"
+    "start": "budo public/index.js -d --serve public/bundle.js --live",
+    "build": "browserify . -o bundle.js -g uglifyify"
   },
   "browserify": {
     "transform": ["babelify"]
@@ -24,7 +20,10 @@
     "url": "https://github.com/ostigley/hiddenDoodle/issues"
   },
   "homepage": "https://github.com/ostigley/hiddenDoodle",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.13.4",
+    "socket.io": "^1.4.6"
+    },
   "devDependencies": {
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
