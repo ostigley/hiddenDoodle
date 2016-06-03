@@ -5,7 +5,11 @@ module.exports = React.createClass({
   render() {
 
     return (
-      <button className='button'></button>
+    	<div>
+      <button id={this.props.id}>{this.props.id}</button>
+			<script></script>
+      
+      </div>
     )
   }
 

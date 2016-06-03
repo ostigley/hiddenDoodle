@@ -5,7 +5,7 @@ module.exports = React.createClass({
   render() {
 
     return (
-      <div className='cover'></div>
+      <div id={this.props.id}></div>
     )
   }
 
