@@ -6,7 +6,9 @@ import Button from './button'
 module.exports = React.createClass({
 
   handleClick() {
-    this.props.buttonClick(this.props.id)
+    console.log('handleClick running')
+    console.log('handleClick running 2', document.getElementById('input-' + this.props.id))
+    this.props.buttonClick(this.props.id, document.getElementById('input-' + this.props.id).value)
   },
 
   render() {
@@ -14,7 +16,7 @@ module.exports = React.createClass({
     return (
       <section id={this.props.id}>
         <p>Section {this.props.id}</p>
-        <Canvas />
+        <Canvas id={ this.props.id} paragraph={this.props.paragraph} />
         <Cover id={"cover "+ this.props.id}/>
         <Button id={"button-"+ this.props.id} onClick={this.handleClick} />
       </section>
