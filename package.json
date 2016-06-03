@@ -1,0 +1,23 @@
+{
+  "name": "hiddendoodle",
+  "version": "1.0.0",
+  "description": "canvas socket app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ostigley/hiddenDoodle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ostigley/hiddenDoodle/issues"
+  },
+  "homepage": "https://github.com/ostigley/hiddenDoodle#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "socket.io": "^1.4.6"
+  }
+}
