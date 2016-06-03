@@ -11,18 +11,11 @@ app.get('/', function(req, res) {
 
 var connections = 0
 
-// var memory = {
-// 	1: [],
-// 	2: [],
-// 	3: []
-// }
-
 var waitingUsers = {
 	1: [],
 	2: [],
 	3: []
 }
-
 
 function returnPanes (number) {
 	if (waitingUsers[number].length < 3) {
@@ -39,19 +32,13 @@ function returnPanes (number) {
  	waitingUsers[number].shift()
 }
 
-
 io.on('connection', function(socket) {
   console.log('a doodler connected')
   
   var user = connections++
 
   socket.on('pane', function(data) {
-  	console.log('pane socket hit', data, typeof data)
-
-    // memory[data.number].push({
-    // 	user: user,
-    // 	pane: data.pane
-    // })
+  	console.log('pane socket hit')
 
     waitingUsers[data.number].push({
   		user: user,
@@ -59,32 +46,10 @@ io.on('connection', function(socket) {
   		pane: data.pane
     })
 
+    console.log('waitingUsers: ', waitingUsers)
     returnPanes(data.number)
 
-    console.log('waitingUsers: ', waitingUsers)
-
-    // this user now needs a pane back, same number as the one they contributed, but form someone else
-
-    // pane is hit, someone is contributing a pane
-    // cool save their pane
-
-    // save this person as waiting for this number pane
-
-    // check if panes can be sent back
-
   })
-
-
-	// socket.on('chat message', function(msg) {
- //    console.log('chat message socket hit, message: ', msg)
- //    socket.broadcast.emit('chat message', username + ': ' + msg)
- //  })
-
- //  socket.on('disconnect', function() {
- //    console.log('disconnect socket hit')
- //    connections--
- //    socket.broadcast.emit('chat message', username + ' just left the chat. There are now ' + connections.toString() + ' people in the room')
- //  })
 
 })
 
