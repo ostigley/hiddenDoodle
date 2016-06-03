@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import Canvas from './canvas'
+import Cover from './cover'
+import Button from './button'
 
 
 module.exports = React.createClass({
@@ -8,6 +11,9 @@ module.exports = React.createClass({
     return (
       <section id={this.props.id}>
         <p>Section {this.props.id}</p>
+        <Canvas />
+        <Cover id={this.props.id}/>
+        <Button />
       </section>
     )
   }
