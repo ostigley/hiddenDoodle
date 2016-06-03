@@ -1,14 +1,13 @@
-function buttonOne() {
-  console.log('buttone one working')
+const socket = io()
+
+function button(number) {
+  console.log('button send ', number)
+  socket.emit('pane', {
+    number: number, 
+    pane: $('#data-' + number).val()
+  })
 }
 
-function buttonTwo() {
-  console.log('buttone two working')
-}
-
-function buttonThree() {
-  console.log('buttone three working')
-}
 
 
 // var socket = io()
