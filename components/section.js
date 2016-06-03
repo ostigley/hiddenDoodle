@@ -4,21 +4,11 @@ import Cover from './cover'
 import Button from './button'
 
 module.exports = React.createClass({
-      getInitialState () {
-        return {data: []};
-      },
 
-      buttonClick () {
-        console.log(this, "clicked")
-        this.props.socket.emit('pane', {
-          number: this.props.id, 
-          pane: 'HELLO ' + Math.random()
-        })
-      },
+  handleClick() {
+    this.props.buttonClick(this.props.id)
+  },
 
-      setState () {
-        console.log(this, "button pushed")
-      }, 
   render() {
 
     return (
@@ -26,22 +16,9 @@ module.exports = React.createClass({
         <p>Section {this.props.id}</p>
         <Canvas />
         <Cover id={"cover "+ this.props.id}/>
-        <Button id={"button-"+ this.props.id} onClick={this.buttonClick} />
+        <Button id={"button-"+ this.props.id} onClick={this.handleClick} />
       </section>
     )
   }
 
 })
-
-
-
-  // return (
-  // <PageContainer>
-  //   <App name='hiddenDoodle' />
-  //   {ids
-  //     .map( (id) => {
-  //       <Section id={id} />
-  //   })}
-  // </PageContainer>,
-  // document.querySelector('body')
-  // )
