@@ -8,7 +8,9 @@ function button(number) {
   })
 }
 
-
+socket.on('full corps', function(data){
+  console.log("data: ", data)
+})
 
 // var socket = io()
 // $('#enterName').submit(function(e) {
