@@ -11,16 +11,32 @@ app.get('/', function(req, res) {
 
 var connections = 0
 
-var memory = {
-	1: [],
-	2: [],
-	3: []
-}
+// var memory = {
+// 	1: [],
+// 	2: [],
+// 	3: []
+// }
 
 var waitingUsers = {
 	1: [],
 	2: [],
 	3: []
+}
+
+
+function returnPanes (number) {
+	if (waitingUsers[number].length < 3) {
+		console.log('returnPanes can\'t return pane number:', number, 'only', waitingUsers[number].length, 'people waiting')
+		return
+	}
+
+  waitingUsers[number][0].socket.emit('full corps', waitingUsers[number][1].pane)
+  waitingUsers[number][1].socket.emit('full corps', waitingUsers[number][2].pane)
+  waitingUsers[number][2].socket.emit('full corps', waitingUsers[number][0].pane)
+
+ 	waitingUsers[number].shift()
+ 	waitingUsers[number].shift()
+ 	waitingUsers[number].shift()
 }
 
 
@@ -32,17 +48,20 @@ io.on('connection', function(socket) {
   socket.on('pane', function(data) {
   	console.log('pane socket hit', data, typeof data)
 
-    memory[data.number].push({
-    	user: user,
-    	pane: data.pane
-    })
+    // memory[data.number].push({
+    // 	user: user,
+    // 	pane: data.pane
+    // })
 
     waitingUsers[data.number].push({
   		user: user,
-  		socket: socket
+  		socket: socket,
+  		pane: data.pane
     })
 
-    console.log('memory: ', memory)
+    returnPanes(data.number)
+
+    console.log('waitingUsers: ', waitingUsers)
 
     // this user now needs a pane back, same number as the one they contributed, but form someone else
 
@@ -53,16 +72,6 @@ io.on('connection', function(socket) {
 
     // check if panes can be sent back
 
-    var response
-    for (var i = 0; i < memory[data.number].length; i++) {
-    	console.log('LOOPING:', memory[data.number][i].user, user)
-    	if (memory[data.number][i].user !== user) {
-    		response = memory[data.number][i].pane
-    		break
-    	}
-    }
-
-   	socket.emit('full corps', response)
   })
 
 
