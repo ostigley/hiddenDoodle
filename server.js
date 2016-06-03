@@ -6,7 +6,7 @@ const io = require('socket.io')(http)
 app.use(express.static('public'))
 
 app.get('/', function(req, res) {
-	res.sendfile(__dirname + '/server.html')
+	res.sendfile(__dirname + '/public/index.html')
 })
 
 var connections = 0

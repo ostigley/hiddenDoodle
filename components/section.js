@@ -3,7 +3,6 @@ import Canvas from './canvas'
 import Cover from './cover'
 import Button from './button'
 
-
 module.exports = React.createClass({
       getInitialState () {
         return {data: []};
@@ -11,6 +10,10 @@ module.exports = React.createClass({
 
       buttonClick () {
         console.log(this, "clicked")
+        this.props.socket.emit('pane', {
+          number: this.props.id, 
+          pane: 'HELLO ' + Math.random()
+        })
       },
 
       setState () {
