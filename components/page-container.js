@@ -6,10 +6,17 @@ const socket = io()
 const ids = [1,2,3]
 
 socket.on('full corps', function(data){
-	console.log("data: ", data)
-	socket.page.funfunFunction(data)
+	socket.page.drawImage(data)
 })
 
+
+/*
+Need to change state object to include the canvas that is being udpated with new data.
+SO that when socket provides new data, draw image knows where to draw it. 
+
+draw image function is not tested yet.  Doing weitd things. 
+
+*/
 module.exports = React.createClass({
 
 		getInitialState () {
@@ -17,14 +24,19 @@ module.exports = React.createClass({
 			return { 1: null, 2: null, 3: null}
 		},
 
-		funfunFunction (data) {
-			console.log('setState called', data)
-			this.setState(data)
-		},
+    drawImage (canvas, data) => { 
+      this.setState(data)
+      let context = canvas.getContext('2d');
+      let imageObj = new Image();
+      imageObj.onload = function() {
+        context.drawImage(imageObj, 0, 0);
+      };
+      imageObj.src = data
+    },
 
-    buttonClick (num, input) {
-      console.log(this, "clicked")
-      this.state[num] = input
+    buttonClick (num, canvas) {
+      this.state[num] = canvas.toDataURL()
+      console.log("num", num, "state before sending", this.state)
       socket.emit('pane', {
         number: num,
         pane: this.state
@@ -37,13 +49,13 @@ module.exports = React.createClass({
 			<main className="container">
     		<h1>hiddenDoodle</h1>
      		{ids.map( (iditem) => {
-        	return (<Section id={iditem} buttonClick={this.buttonClick} paragraph={this.state[iditem]} />)
+        	return (<Section id={iditem} buttonClick={this.buttonClick} drawing={this.state[iditem]} />)
     		})}
   		</main>
   		)
     }
-
 })
 
 
+const 
 

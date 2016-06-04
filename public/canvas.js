@@ -10,7 +10,6 @@ for (i=0; i<canvas.length; i++) {
 var initiate = (Canvas) => {
 
 	let canvas = Canvas.target
-	console.log(canvas)
 
 	let ctx = canvas.getContext("2d")
 	let w = canvas.width
