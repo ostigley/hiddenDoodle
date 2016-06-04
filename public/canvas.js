@@ -1,16 +1,11 @@
-const canvas1 = document.querySelector('#canvas-1')
-const canvas2 = document.querySelector('#canvas-2')
-const canvas3 = document.querySelector('#canvas-3')
+const canvas = document.querySelectorAll('canvas')
 
-canvas1.addEventListener('mouseover', (e) => (
-	initiate(e)
-))
-canvas2.addEventListener('mouseover', (e) => (
-	initiate(e)
-))
-canvas3.addEventListener('mouseover', (e) => (
-	initiate(e)
-))
+for (i=0; i<canvas.length; i++) {
+	canvas[i].addEventListener('mouseover', (e) => (
+		this.initiate(e)
+	))
+}
+
 
 var initiate = (Canvas) => {
 
