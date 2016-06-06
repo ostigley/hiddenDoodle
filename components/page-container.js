@@ -41,6 +41,7 @@ module.exports = React.createClass({
 
     buttonClick (num, canvas) {
       this.state[num] = canvas.toDataURL()
+      console.log(this.state[num])
       // console.log("num", num, "state before sending", this.state)
       socket.emit('pane', {
         number: num,

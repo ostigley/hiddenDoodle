@@ -5,7 +5,7 @@ for (i=0; i<canvas.length; i++) {
 		this.initiate(e)
 	))
 }
-
+ 
 
 var initiate = (Canvas) => {
 
@@ -37,6 +37,7 @@ var initiate = (Canvas) => {
 	canvas.addEventListener('mousemove', (Canvas) => {
 		if (draw) {
 				updateCoords(Canvas.offsetX, Canvas.offsetY)
+				console.log(prevX, prevY)
 				paint()
 		}
 		return
@@ -48,7 +49,7 @@ var initiate = (Canvas) => {
 		ctx.beginPath()
 	  ctx.moveTo(prevX, prevY)
 	  ctx.lineTo(currX, currY)
-	  ctx.lineWidth = 10
+	  ctx.lineWidth = 1
 	  ctx.stroke()
 	  ctx.closePath()
 	}
