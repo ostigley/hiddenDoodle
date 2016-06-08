@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Section from './section.js'
+// var io = require('socket.io')()
 
 const socket = io()
 
@@ -14,13 +15,6 @@ socket.on('full corps', function(data){
 })
 
 
-/*
-Need to change state object to include the canvas that is being udpated with new data.
-SO that when socket provides new data, draw image knows where to draw it.
-
-draw image function is not tested yet.  Doing weitd things. 
-
-*/
 module.exports = React.createClass({
 
 		getInitialState () {
