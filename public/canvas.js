@@ -2,14 +2,13 @@ const canvas = document.querySelectorAll('canvas')
 
 for (i=0; i<canvas.length; i++) {
 	canvas[i].addEventListener('mouseover', (e) => (
-		this.initiate(e)
+		initiate(e.path[0])
 	))
 }
  
 
-var initiate = (Canvas) => {
+var initiate = (canvas) => {
 
-	let canvas = Canvas.target
 
 	let ctx = canvas.getContext("2d")
 	let w = canvas.width
@@ -20,18 +19,19 @@ var initiate = (Canvas) => {
 	let currY = 0
 
 	ctx.strokeStyle= 'black'
-	ctx.lineWidth = 0
+	ctx.lineJoin = 'round'
+	ctx.lineWidth = 5
 
 	var draw = false
 
 	canvas.addEventListener('mousedown', (Canvas) => {
 		Canvas.preventDefault()
-		draw = !(draw)
+		draw = true
 		updateCoords(Canvas.offsetX, Canvas.offsetY)
 	})
 
 	canvas.addEventListener('mouseup', () => {
-		draw = !(draw)
+		draw = false
 	})
 
 	canvas.addEventListener('mousemove', (Canvas) => {
@@ -41,6 +41,10 @@ var initiate = (Canvas) => {
 				paint()
 		}
 		return
+	})
+
+	canvas.addEventListener('mouseleave', (Canvas) => {
+		draw = false
 	})
 
 
