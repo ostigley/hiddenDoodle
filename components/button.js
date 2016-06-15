@@ -14,7 +14,7 @@ import React, { Component } from 'react'
 
 module.exports = ({id, onClick}) => (
     	<div>
-	      <button id={id} onClick={onClick}> {id} </button>
+	      <button id={id} onClick={onClick}>Submit</button>
       </div>
 
 	)
