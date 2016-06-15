@@ -29,6 +29,7 @@ var initiate = (canvas) => {
 		ctx.beginPath()
 		ctx.moveTo(mouse.x, mouse.y)
 
+
 		canvas.addEventListener('mousemove', onPaint, false)
 	}, false)
 
