@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "budo public/index.js -d --serve public/bundle.js --live",
-    "build": "browserify public/index.js -o public/bundle.js",
-    "watch": "watchify public/index.js -o public/bundle.js -dv -t babelify",
+    "watch": "watchify public/index.js -o public/bundle.js -dv -t",
     "start": "npm run watch & nodemon server.js"
   },
   "browserify": {

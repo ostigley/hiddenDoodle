@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-
 export default class Canvas extends React.Component{
 
 	componentDidMount () {
@@ -14,7 +13,7 @@ export default class Canvas extends React.Component{
 
 	updateDrawing () {
 		var context = this.canv.getContext('2d')
-    context.clearRect(0,0,500,500)
+    context.clearRect(0,0,700,400)
     var imageObj = new Image()
     imageObj.src = this.props.drawing
     imageObj.onload = function() { 
@@ -26,8 +25,8 @@ export default class Canvas extends React.Component{
 		return (
 			<canvas 
 				id={this.props.id} 
-				width="500px" 
-				height="500px"
+				width="700px" 
+				height="400px"
 				ref={(c) => this.canv = c}
 				>
 			</canvas>
