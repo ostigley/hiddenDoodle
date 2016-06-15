@@ -2,65 +2,47 @@ const canvas = document.querySelectorAll('canvas')
 
 for (i=0; i<canvas.length; i++) {
 	canvas[i].addEventListener('mouseover', (e) => (
-		this.initiate(e)
+		initiate(e.path[0])
 	))
 }
  
+var initiate = (canvas) => {
 
-var initiate = (Canvas) => {
-
-	let canvas = Canvas.target
 
 	let ctx = canvas.getContext("2d")
 	let w = canvas.width
 	let h = canvas.height
-	let prevX = 0
-	let currX = 0
-	let prevY = 0
-	let currY = 0
 
-	ctx.strokeStyle= 'black'
-	ctx.lineWidth = 0
+	var mouse = {x: 0, y: 0}
 
-	var draw = false
+	canvas.addEventListener('mousemove', (e) => {
+		mouse.x = e.pageX - canvas.offsetLeft
+		mouse.y = e.pageY - canvas.offsetTop
+	}, false)
 
-	canvas.addEventListener('mousedown', (Canvas) => {
-		Canvas.preventDefault()
-		draw = !(draw)
-		updateCoords(Canvas.offsetX, Canvas.offsetY)
-	})
+  ctx.strokeStyle= 'black'
+	ctx.lineJoin = 'round'
+	ctx.lineWidth = 5
+	ctx.lineCap = 'round'
 
-	canvas.addEventListener('mouseup', () => {
-		draw = !(draw)
-	})
-
-	canvas.addEventListener('mousemove', (Canvas) => {
-		if (draw) {
-				updateCoords(Canvas.offsetX, Canvas.offsetY)
-				console.log(prevX, prevY)
-				paint()
-		}
-		return
-	})
-
-
-
-	const paint = () => {
+	canvas.addEventListener('mousedown', (e) => {
 		ctx.beginPath()
-	  ctx.moveTo(prevX, prevY)
-	  ctx.lineTo(currX, currY)
-	  ctx.lineWidth = 1
-	  ctx.stroke()
-	  ctx.closePath()
-	}
+		ctx.moveTo(mouse.x, mouse.y)
 
-	const updateCoords = (x,y) => {
-		prevX = currX
-		prevY = currY
-		currX = x
-		currY = y
+		canvas.addEventListener('mousemove', onPaint, false)
+	}, false)
+
+	canvas.addEventListener('mouseup', (e) => {
+		canvas.removeEventListener('mousemove', onPaint, false)
+	}, false)
+
+	canvas.addEventListener('mouseleave', (e) => {
+		canvas.removeEventListener('mousemove', onPaint, false)
+	}, false)
+
+	var onPaint = () => {
+		ctx.lineTo(mouse.x, mouse.y)
+		ctx.stroke()
 	}
 
 }
-
-
