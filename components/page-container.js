@@ -20,24 +20,19 @@ module.exports = React.createClass({
 		getInitialState () {
 			socket.page = this
 			return { 
-        1: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
-        2: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
-        3: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+        1: "",
+        2: "",
+        3: ""
       }
 		},
 
     drawImage (canvas, data) { 
       this.setState(data)
-      // let context = canvas.getContext('2d')
-      // context.clearRect(0,0,500,500)
-      // let imageObj = new Image()
-      // imageObj.src = this.state[canvasCount]
-      // imageObj.onload = function() {
-      //   context.drawImage(imageObj, 0, 0)
-      // };
+
     },
 
     buttonClick (num, canvas) {
+      console.log("data changed?", this.state[num] !== canvas.toDataURL())
       this.state[num] = canvas.toDataURL()
       socket.emit('pane', {
         number: num,
