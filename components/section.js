@@ -6,9 +6,6 @@ import Button from './button'
 module.exports = React.createClass({
 
   handleClick() {
-
-    // console.log('handleClick running')
-    // console.log('handleClick running 2', document.getElementById('canvas-' + this.props.id))
     this.props.buttonClick(this.props.id, document.getElementById('canvas-' + this.props.id))
   },
 

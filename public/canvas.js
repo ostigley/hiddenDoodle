@@ -37,7 +37,6 @@ var initiate = (Canvas) => {
 	canvas.addEventListener('mousemove', (Canvas) => {
 		if (draw) {
 				updateCoords(Canvas.offsetX, Canvas.offsetY)
-				console.log(prevX, prevY)
 				paint()
 		}
 		return
