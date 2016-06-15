@@ -14,7 +14,7 @@ module.exports = React.createClass({
     return (
       <section id={this.props.id}>
         <p>Section {this.props.id}</p>
-        <Canvas id={"canvas-"+ this.props.id} drawing={this.props.drawing} />
+        <Canvas id={"canvas-"+ this.props.id} drawing={this.props.drawing} peep={this.props.peep} />
         <Cover id={"cover-"+ this.props.id}/>
         <Button id={"button-"+ this.props.id} onClick={this.handleClick} />
       </section>
