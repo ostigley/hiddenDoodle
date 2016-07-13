@@ -1,3 +1,5 @@
+var Canvas = require('canvas')
+const Image = Canvas.Image
 
 const express = require('express')
 const app = express()
@@ -20,6 +22,8 @@ var waitingUsers = {
 
 function returnPanes (number) {
 	if (waitingUsers[number].length < 3) {
+    // console.log('should see peep: ', waitingUsers[number][0].pane)
+
 		console.log('returnPanes can\'t return pane number:', number, 'only', waitingUsers[number].length, 'people waiting')
 		return
 	}
@@ -39,15 +43,15 @@ io.on('connection', function(socket) {
   var user = connections++
 
   socket.on('pane', function(data) {
-  	console.log('pane socket hit')
-
+    const index = waitingUsers[data.number].length
     waitingUsers[data.number].push({
-  		user: user,
-  		socket: socket,
-  		pane: data.pane
+      user: user,
+      socket: socket,
+      pane: data.pane
     })
-
-    console.log('waitingUsers: ', waitingUsers)
+    waitingUsers[data.number][index].pane.pane[data.number+1].peep = crop(data.pane.pane[data.number].current)
+    waitingUsers[data.number][index].pane.level += 1
+    console.log('data updated', waitingUsers)
     returnPanes(data.number)
 
   })
@@ -57,3 +61,24 @@ io.on('connection', function(socket) {
 http.listen(3000, function() {
   console.log('chat running on 3000')
 })
+
+const crop = (dataURI) => {
+  var peepData
+  var canvas = new Canvas(700, 400)
+  var ctx = canvas.getContext('2d')
+
+  var imageObj = new Image
+  imageObj.src = dataURI
+        var sourceX = 0;
+        var sourceY = 375;
+        var sourceWidth = 700;
+        var sourceHeight = 25;
+        var destWidth = sourceWidth;
+        var destHeight = sourceHeight;
+        var destX = 0
+        var destY = 0
+        ctx.drawImage(imageObj, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight)
+        peepData = canvas.toDataURL()
+  return peepData
+}
+
