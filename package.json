@@ -8,7 +8,7 @@
     "build": "browserify public/index.js -o public/bundle.js",
     "watch": "watchify public/index.js -o public/bundle.js -dv -t babelify",
     "start": "npm run watch & nodemon server.js",
-    "test": "clear && mocha test/setup.js test/**/*.js"
+    "test": "clear && mocha test/setup.js test/**/*.js --watch"
   },
   "browserify": {
     "transform": [

@@ -1,5 +1,4 @@
-var Canvas = require('canvas')
-const Image = Canvas.Image
+import Crop from        './lib/image-functions.js'
 
 const express = require('express')
 const app = express()
@@ -12,7 +11,7 @@ app.get('/', function(req, res) {
 	res.sendfile(__dirname + '/public/index.html')
 })
 
-var connections = 0
+
 
 var waitingUsers = {
 	1: [],
@@ -37,6 +36,7 @@ function returnPanes (number) {
  	waitingUsers[number].shift()
 }
 
+var connections = 0
 io.on('connection', function(socket) {
   console.log('a doodler connected')
   
@@ -62,23 +62,5 @@ http.listen(3000, function() {
   console.log('chat running on 3000')
 })
 
-const crop = (dataURI) => {
-  var peepData
-  var canvas = new Canvas(700, 400)
-  var ctx = canvas.getContext('2d')
 
-  var imageObj = new Image
-  imageObj.src = dataURI
-        var sourceX = 0;
-        var sourceY = 375;
-        var sourceWidth = 700;
-        var sourceHeight = 25;
-        var destWidth = sourceWidth;
-        var destHeight = sourceHeight;
-        var destX = 0
-        var destY = 0
-        ctx.drawImage(imageObj, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight)
-        peepData = canvas.toDataURL()
-  return peepData
-}
 
