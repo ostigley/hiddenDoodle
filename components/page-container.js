@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Section from './section.js'
+// var io = require('socket.io')()
 
 const socket = io()
 
