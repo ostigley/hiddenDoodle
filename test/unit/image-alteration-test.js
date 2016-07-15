@@ -1,15 +1,17 @@
-import Crop 			from '../../lib/image-functions.js'
-import Canvas 		from 'canvas'
+import crop					from '../../lib/image-functions.js'
+import {canvasData} from '../helpers/canvas-data.js'
 import {
 	expect, 
-	assert} 				from 'chai'
-import canvasData from '../helpers/canvas-data.js'
+	assert} 					from 'chai'
+
 describe('The Crop function', () => {
+	const newCanvasData = crop(canvasData)
 
-	const newCanvasData = 
 	it('returns canvas data', () => {
-
-
+		expect(newCanvasData).to.contain('data:image/png;base64,')
+		expect(newCanvasData).to.not.equal('data:,')
+		assert(newCanvasData.length < canvasData.length)
+		expect.typeOf(newCanvasData).to.equal('string')
+		console.log(newCanvasData.length, canvasData.length)
 	})
-
 })
