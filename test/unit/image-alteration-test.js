@@ -11,7 +11,6 @@ describe('The Crop function', () => {
 		expect(newCanvasData).to.contain('data:image/png;base64,')
 		expect(newCanvasData).to.not.equal('data:,')
 		assert(newCanvasData.length < canvasData.length)
-		expect.typeOf(newCanvasData).to.equal('string')
-		console.log(newCanvasData.length, canvasData.length)
+		expect(newCanvasData).to.be.a('string')
 	})
 })
